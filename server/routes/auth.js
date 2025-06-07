@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
+const User = require("../model/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // Register Route
 router.post("/register", async (req, res) => {
   try {
-    const { name, username, email, password } = req.body;
-
+    const { name, username, email, password } = req.body.userData;
+    
     const existingEmail = await User.findOne({ email });
 
     if (existingEmail)
@@ -20,24 +20,25 @@ router.post("/register", async (req, res) => {
 
     const hashed = await bcrypt.hash(password, 10);
     const user = new User({ name, username, email, password: hashed });
+    console.log(user);
     await user.save();
-
     res.status(201).json({ msg: "User registered" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: "Server error" });
   }
 });
+
 router.post("/login", async (req, res) => {
   try {
-    const { identifier, password } = req.body; // identifier = email or username
+    const { username, password } = req.body; 
 
     // Find user by email or username
     const user = await User.findOne({
-      $or: [{ email: identifier }, { username: identifier.toLowerCase() }],
+        username: username.toLowerCase()
     });
 
-    if (!user) return res.status(400).json({ msg: "Invalid email/username" });
+    if (!user) return res.status(400).json({ msg: "Invalid username" });
 
     // Match password
     const isMatch = await bcrypt.compare(password, user.password);
