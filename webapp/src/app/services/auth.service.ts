@@ -33,7 +33,7 @@ export class AuthService {
   //   if(userdata){
   //     return JSON.parse(userdata).isAdmin;
   //   }
-  
+
   //   return false;
   // }
   get username(){
@@ -43,6 +43,17 @@ export class AuthService {
     }
     return null;
   }
+   getCurrentUserId(): string | null {
+   let userdata=localStorage.getItem('user');
+   console.log(userdata);
+
+   if(userdata){
+     return JSON.parse(userdata).id;
+
+    }
+    return null;
+  }
+
   get email(){
     let userdata=localStorage.getItem('user');
     if(userdata){

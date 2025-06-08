@@ -1,0 +1,19 @@
+<div class="max-w-2xl mx-auto p-4">
+  <h2 class="text-2xl font-bold mb-6">Feed</h2>
+
+  <div *ngFor="let post of posts" class="border shadow p-4 rounded-lg mb-6">
+    <div class="flex items-center gap-2 mb-2">
+      <img [src]="'http://localhost:5000/' + post.user.profileImage" class="w-10 h-10 rounded-full object-cover" />
+      <p class="font-medium">{{ post.user.username }}</p>
+    </div>
+
+    <p class="mb-2">{{ post.caption }}</p>
+
+    <img *ngIf="post.image" [src]="'http://localhost:5000/' + post.image" class="w-full rounded-xl mb-2" />
+
+    <div class="flex gap-4 text-sm">
+      <button (click)="likePost(post._id)">❤️ {{ post.likes.length }}</button>
+      <span>💬 {{ post.comments.length }}</span>
+    </div>
+  </div>
+</div>

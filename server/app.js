@@ -2,12 +2,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const authrouter=require("./routes/auth")
+const postrouter=require("./routes/post")
+const userrouter=require("./routes/user")
 const app = express();
 
 
 const authuser = require("./middlewere/auth");
 const cors = require('cors');
 app.use(cors());
+app.use('/uploads', express.static('uploads'));
+
 
 // Middleware to parse JSON
 app.use(express.json());
@@ -19,6 +23,8 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Example Route
 app.use("/auth",authrouter);
+app.use("/posts",postrouter);
+app.use("/user",userrouter);
 app.get('/', (req, res) => {
     res.send('Hello from Express + MongoDB!');
 });
