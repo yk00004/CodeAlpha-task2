@@ -26,9 +26,17 @@ followUser(myId: string, targetId: string) {
     followId: targetId,
   });
 }
+ unfollowUser(followId: string) {
+    return this.http.put(`${this.API_URL}/user/unfollow/${followId}`, {});
+  }
 updateProfileImage(userId: string, formData: FormData) {
   return this.http.put(`${this.API_URL}/user/${userId}/profile-image`, formData);
 }
+searchUsers(query: string) {
+  console.log(query);
+  return this.http.get(`${this.API_URL}/user/search?query=${query}`);
+  console.log(query);
 
+}
 
 }

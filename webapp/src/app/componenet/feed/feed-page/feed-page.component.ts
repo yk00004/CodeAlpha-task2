@@ -1,3 +1,6 @@
+import { NotificationService } from './../../../services/notification.service';
+import { NotificationComponent } from './../../notification/notification.component';
+import { AuthService } from './../../../services/auth.service';
 import { Component } from '@angular/core';
 import { FeedService } from '../../../services/feed.service';
 import { NgFor, NgIf } from '@angular/common';

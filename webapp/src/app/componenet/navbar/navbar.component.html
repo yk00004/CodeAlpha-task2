@@ -1,8 +1,14 @@
-<ng-container *ngIf="authService.islogedin">
-  <button
-    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-    (click)="goToMyProfile()"
-  >
-    My Profile
-  </button>
-</ng-container>
+<nav class="bg-white shadow-md px-4 py-3 flex justify-between items-center">
+  <div class="flex items-center gap-3">
+    <img src="assets/logo.png" alt="Logo" class="w-8 h-8" />
+    <span class="text-xl font-bold text-blue-600">SocialApp</span>
+  </div>
+
+  <div class="flex gap-6 items-center text-sm">
+    <a routerLink="/feed" class="hover:text-blue-500">Home</a>
+    <a [routerLink]="['/profile', user]" class="hover:text-blue-500">My Profile</a>
+    <a routerLink="/createpost" class="hover:text-blue-500">Create</a>
+    <a routerLink="/notification" class="hover:text-blue-500">Notifications</a>
+    <button (click)="logout()" class="text-red-500 hover:underline">Logout</button>
+  </div>
+</nav>

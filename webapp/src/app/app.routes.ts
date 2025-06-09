@@ -6,6 +6,8 @@ import { FeedPageComponent } from './componenet/feed/feed-page/feed-page.compone
 import { CreatePostComponent } from './componenet/post/create-post/create-post.component';
 import { ProfileComponent } from './componenet/user/profile/profile.component';
 import { SuggestionsComponent } from './componenet/user/suggestions/suggestions.component';
+import { SearchComponent } from './componenet/search/search.component';
+import { NotificationComponent } from './componenet/notification/notification.component';
 
 export const routes: Routes = [
   {
@@ -35,6 +37,16 @@ export const routes: Routes = [
   {
     path:"suggestions",
     component:SuggestionsComponent ,
+    // canActivate:[authGuard]
+  },
+  {
+    path:"search",
+    component:SearchComponent ,
+    // canActivate:[authGuard]
+  },
+  {
+    path:"notification",
+    component:NotificationComponent ,
     // canActivate:[authGuard]
   },
 

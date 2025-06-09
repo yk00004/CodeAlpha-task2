@@ -1,0 +1,19 @@
+<div class="max-w-3xl mx-auto p-4">
+  <mat-form-field class="w-full" appearance="outline">
+    <mat-label>Search users</mat-label>
+    <input matInput [(ngModel)]="searchText" (input)="onSearch()" />
+  </mat-form-field>
+
+  <div *ngIf="users.length === 0 && searchText" class="text-center text-gray-500 mt-4">
+    No users found.
+  </div>
+
+  <div *ngFor="let user of users" class="p-4 border rounded-lg shadow mt-3 flex items-center gap-4">
+    <img [src]="'http://localhost:5000/' + user.profileImage" class="w-12 h-12 rounded-full object-cover" />
+    <div>
+      <h3 class="font-semibold">{{ user.username }}</h3>
+      <p class="text-sm text-gray-500">{{ user.name }}</p>
+    </div>
+    <a [routerLink]="['/profile', user._id]" class="ml-auto text-blue-600 hover:underline">View Profile</a>
+  </div>
+</div>
