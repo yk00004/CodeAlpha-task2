@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FeedService } from '../../../services/feed.service';
 import { NgFor, NgIf } from '@angular/common';
+import { PostCardComponent } from '../../post/post-card/post-card.component';
 
 @Component({
   selector: 'app-feed-page',
-  imports: [NgIf,NgFor],
+  imports: [NgFor,PostCardComponent],
   templateUrl: './feed-page.component.html',
   styleUrl: './feed-page.component.scss'
 })

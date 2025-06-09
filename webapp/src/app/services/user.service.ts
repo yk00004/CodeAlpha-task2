@@ -17,5 +17,18 @@ private API_URL = 'http://localhost:5000';
 
     return this.http.get(`${this.API_URL}/posts/user/${userId}`);
   }
+  getSuggestions(userId: string) {
+  return this.http.get(`${this.API_URL}/user/suggestions/${userId}`);
+}
+followUser(myId: string, targetId: string) {
+  return this.http.put(`${this.API_URL}/user/follow`, {
+    userId: myId,
+    followId: targetId,
+  });
+}
+updateProfileImage(userId: string, formData: FormData) {
+  return this.http.put(`${this.API_URL}/user/${userId}/profile-image`, formData);
+}
+
 
 }

@@ -1,0 +1,24 @@
+<mat-card class="p-4 rounded-2xl shadow-md">
+  <h2 class="text-lg font-bold mb-4">People you may know</h2>
+
+  <div *ngIf="suggestions.length === 0" class="text-gray-500">
+    No suggestions found.
+  </div>
+
+  <div *ngFor="let user of suggestions" class="flex items-center justify-between mb-3">
+    <div class="flex items-center gap-3">
+      <img
+        [src]="'http://localhost:5000/' + user?.profileImage"
+        alt="Profile"
+        class="w-10 h-10 rounded-full object-cover border"
+      />
+      <span class="font-medium">{{ user.username }}</span>
+    </div>
+    <button
+      class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 text-sm"
+      (click)="follow(user._id)"
+    >
+      Follow
+    </button>
+  </div>
+</mat-card>

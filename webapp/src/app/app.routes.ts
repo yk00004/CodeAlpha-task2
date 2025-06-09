@@ -5,6 +5,7 @@ import { RegisterComponent } from './componenet/auth/register/register.component
 import { FeedPageComponent } from './componenet/feed/feed-page/feed-page.component';
 import { CreatePostComponent } from './componenet/post/create-post/create-post.component';
 import { ProfileComponent } from './componenet/user/profile/profile.component';
+import { SuggestionsComponent } from './componenet/user/suggestions/suggestions.component';
 
 export const routes: Routes = [
   {
@@ -29,6 +30,11 @@ export const routes: Routes = [
   {
     path:"profile/:id",
     component:ProfileComponent ,
+    // canActivate:[authGuard]
+  },
+  {
+    path:"suggestions",
+    component:SuggestionsComponent ,
     // canActivate:[authGuard]
   },
 
