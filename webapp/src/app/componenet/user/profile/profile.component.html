@@ -24,6 +24,14 @@
         <span>
           <strong class="text-blue-400">{{ user?.following?.length || 0 }}</strong> Following
         </span>
+        <button
+        [routerLink]="['/chat', userId]"
+          class="bg-blue-600 text-white text-sm px-5 py-2 rounded-full
+                 hover:bg-blue-700 transition-colors duration-300
+                 shadow-md"
+        >
+          message
+        </button>
       </div>
 
       <!-- Follow/Unfollow Button -->

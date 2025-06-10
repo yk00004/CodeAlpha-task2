@@ -61,7 +61,7 @@ io.on('connection', socket => {
     socket.on('send-message', async ({ from, to, text }) => {
         const target = onlineUsers.get(to);
         if (target) {
-            io.to(target).emit('receive-message', { from, text, timestamp: Date.now() });
+            io.to(target).emit('receive-message', { from, to, text, timestamp: Date.now() });
             console.log(`Message from ${from} to ${to} delivered via socket.`); // Added for debugging
         } else {
             console.log(`User ${to} is not online.`); // Added for debugging

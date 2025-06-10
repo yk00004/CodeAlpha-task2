@@ -32,14 +32,18 @@ router.get(
   auth,
   async (req, res) => {
     try {
+      
       const { otherUserId } = req.params;
+      // console.log(req.user +" sdfgfdg "+otherUserId);
       const messages = await Message.find({
         $or: [
-          { from: req.user._id, to: otherUserId },
-          { from: otherUserId, to: req.user._id }
+          { from: req.user, to: otherUserId },
+          { from: otherUserId, to: req.user }
         ]
       })
       .sort('createdAt');
+      console.log(messages);
+      
       res.json(messages);
     } catch (err) {
       console.error(err);

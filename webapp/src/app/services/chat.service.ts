@@ -31,7 +31,7 @@ export class ChatService {
   }
 
   // Real-time receive
-  onMessage(): Observable<{ from: string; text: string; timestamp: number }> {
+  onMessage(): Observable<{ from: string; to: string; text: string; timestamp: number }> {
     return new Observable(observer => {
       this.socket.on('receive-message', (data:any) => observer.next(data));
       return () => this.socket.off('receive-message');
@@ -40,6 +40,12 @@ export class ChatService {
 
   // REST: fetch past messages
   getHistory(otherUserId: string): Observable<Message[]> {
+    // console.log(otherUserId);
+
     return this.http.get<Message[]>(`${this.baseUrl}/history/${otherUserId}`);
   }
+  // getdata(otherUserId: string) {
+  //   return this.http.get(`${this.baseUrl}/datahistory/${otherUserId}`);
+  // }
+
 }
