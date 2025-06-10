@@ -6,10 +6,11 @@ import { FormControl, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {  ReactiveFormsModule } from '@angular/forms';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-search',
-  imports: [CommonModule,MatFormFieldModule,MatInputModule,ReactiveFormsModule,RouterLink,FormsModule],
+  imports: [CommonModule,MatFormFieldModule,MatInputModule,ReactiveFormsModule,RouterLink,FormsModule,MatIcon],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })

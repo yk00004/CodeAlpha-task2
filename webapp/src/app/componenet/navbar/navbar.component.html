@@ -1,14 +1,62 @@
-<nav class="bg-white shadow-md px-4 py-3 flex justify-between items-center">
-  <div class="flex items-center gap-3">
-    <img src="assets/logo.png" alt="Logo" class="w-8 h-8" />
-    <span class="text-xl font-bold text-blue-600">SocialApp</span>
+<nav class="h-screen w-60 bg-gray-900 text-gray-100 fixed flex flex-col justify-between shadow-lg">
+  <!-- Top Logo Section -->
+  <div>
+    <div class="flex items-center gap-3 px-6 py-5 border-b border-gray-700">
+      <!-- <img src="assets/logo.png" alt="Logo" class="w-8 h-8" /> -->
+      <span class="text-lg font-bold">SocialApp</span>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="mt-6 space-y-4 px-4 text-sm">
+      <a
+        routerLink="/feed"
+        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 transition"
+      >
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </a>
+
+      <a
+        routerLink="/notification"
+        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 transition"
+      >
+        <mat-icon>notifications</mat-icon>
+        <span>Notifications</span>
+      </a>
+      <a
+        routerLink="/search"
+        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 transition"
+      >
+        <mat-icon class="text-lg">search</mat-icon>
+        <span>search</span>
+      </a>
+
+      <a
+        [routerLink]="['/profile', user]"
+        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 transition"
+      >
+        <mat-icon>account_circle</mat-icon>
+        <span>My Profile</span>
+      </a>
+
+      <a
+        routerLink="/createpost"
+        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 transition"
+      >
+        <mat-icon>add_box</mat-icon>
+        <span>Create Post</span>
+      </a>
+    </div>
   </div>
 
-  <div class="flex gap-6 items-center text-sm">
-    <a routerLink="/feed" class="hover:text-blue-500">Home</a>
-    <a [routerLink]="['/profile', user]" class="hover:text-blue-500">My Profile</a>
-    <a routerLink="/createpost" class="hover:text-blue-500">Create</a>
-    <a routerLink="/notification" class="hover:text-blue-500">Notifications</a>
-    <button (click)="logout()" class="text-red-500 hover:underline">Logout</button>
+  <!-- Logout -->
+  <div class="px-4 py-5 border-t border-gray-700">
+    <button
+      (click)="logout()"
+      class="w-full flex items-center gap-3 text-left px-3 py-2 rounded-lg text-red-400 hover:bg-gray-800 hover:text-red-500 transition"
+    >
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
   </div>
 </nav>

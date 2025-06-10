@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
 import { CommonModule } from '@angular/common';
 import { TimePipe } from '../../pipes/time.pipe';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-notification',
-  imports: [CommonModule,TimePipe],
+  imports: [CommonModule,TimePipe,RouterLink],
   templateUrl: './notification.component.html',
   styleUrl: './notification.component.scss'
 })

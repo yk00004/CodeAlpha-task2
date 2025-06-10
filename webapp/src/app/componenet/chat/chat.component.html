@@ -1,0 +1,38 @@
+<div class="flex flex-col h-screen p-4 bg-gray-900">
+  <div class="flex-1 overflow-auto space-y-2 mb-4">
+    <div *ngFor="let msg of messages()">
+      <div
+        class="max-w-xs p-2 rounded-lg"
+        [ngClass]="{
+          'self-end  text-right bg-blue-800 text-white': msg.from === currentUserId,
+          'self-start  text-left bg-gray-800 text-gray-200': msg.from !== currentUserId
+        }"
+      >
+        {{ msg.text }}
+        <div class="text-xs text-gray-500 mt-1 dark:text-gray-400">
+          {{ msg.timestamp | date:'shortTime' }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form (ngSubmit)="send()" class="flex space-x-2">
+    <input
+      [(ngModel)]="inputText"
+      name="message"
+      class="flex-1 p-2 border rounded-lg
+
+             bg-gray-800 text-gray-200 placeholder-gray-400"
+      placeholder="Type a message..."
+      required
+    />
+    <button
+      type="submit"
+      class="px-4 py-2  text-white rounded-lg
+             
+             bg-blue-500 hover:bg-blue-600"
+    >
+      Send
+    </button>
+  </form>
+</div>

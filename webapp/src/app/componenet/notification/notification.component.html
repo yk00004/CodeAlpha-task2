@@ -1,9 +1,14 @@
-<div class="max-w-2xl mx-auto p-4">
-  <h2 class="text-xl font-bold mb-4">Notifications</h2>
+<div class="max-w-2xl mx-auto p-4 bg-gray-900 rounded-xl shadow-md text-gray-200">
+  <h2 class="text-xl font-semibold mb-6">Notifications</h2>
 
-  <div *ngIf="notifications.length === 0" class="text-gray-500">No notifications.</div>
+  <div *ngIf="notifications.length === 0" class="italic text-gray-500">
+    No notifications.
+  </div>
 
-  <div *ngFor="let n of notifications" class="border p-4 rounded-xl mb-3 shadow flex justify-between items-center">
+  <div
+    *ngFor="let n of notifications"
+    class="flex justify-between items-center p-4 mb-4 rounded-xl border border-gray-700 shadow-sm hover:shadow-lg transition-shadow duration-300 bg-gray-800"
+  >
     <div>
       <p class="text-sm">
         <strong>{{ n.sender.username }}</strong>
@@ -13,11 +18,13 @@
           <span *ngSwitchCase="'follow'">started following you</span>
         </ng-container>
       </p>
-      <p class="text-xs text-gray-500">{{ n.createdAt | time }}</p>
+      <p class="text-xs text-gray-500 mt-1">
+        {{ n.createdAt | time }}
+      </p>
     </div>
     <button
       *ngIf="!n.read"
-      class="text-xs px-3 py-1 rounded-full bg-blue-600 text-white"
+      class="text-xs px-3 py-1 rounded-full bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-200"
       (click)="markAsRead(n._id)"
     >
       Mark Read

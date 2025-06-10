@@ -8,7 +8,7 @@ import { PostCardComponent } from '../../post/post-card/post-card.component';
 
 @Component({
   selector: 'app-feed-page',
-  imports: [NgFor,PostCardComponent],
+  imports: [NgFor,NgIf,PostCardComponent],
   templateUrl: './feed-page.component.html',
   styleUrl: './feed-page.component.scss'
 })

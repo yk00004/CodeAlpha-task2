@@ -1,19 +1,38 @@
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="onSubmit()"
+  class="max-w-md mx-auto p-6 bg-gray-900 text-white rounded-xl shadow-lg space-y-6 mt-16 border border-gray-700"
+>
+  <h2 class="text-3xl font-extrabold text-center text-white">Login</h2>
 
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto p-6 bg-white rounded-xl shadow-md space-y-4 mt-10">
-
-  <h2 class="text-2xl font-bold text-center">Login</h2>
-
-  <mat-form-field appearance="fill" class="w-full">
-    <mat-label>Username</mat-label>
-    <input matInput formControlName="username" placeholder="Choose a username">
+  <mat-form-field appearance="fill" class="w-full" color="accent">
+    <mat-label class="text-gray-300">Username</mat-label>
+    <input
+      matInput
+      formControlName="username"
+      placeholder="Choose a username"
+      class="text-white"
+    />
   </mat-form-field>
 
-  <mat-form-field appearance="fill" class="w-full">
-    <mat-label>Password</mat-label>
-    <input matInput type="password" formControlName="password" placeholder="********">
+  <mat-form-field appearance="fill" class="w-full" color="accent">
+    <mat-label class="text-gray-300">Password</mat-label>
+    <input
+      matInput
+      type="password"
+      formControlName="password"
+      placeholder="********"
+      class="text-white"
+    />
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit" class="w-full" [disabled]="registerForm.invalid">
+  <button
+    mat-raised-button
+    color="accent"
+    type="submit"
+    class="w-full font-semibold"
+    [disabled]="registerForm.invalid"
+  >
     Login
   </button>
 </form>

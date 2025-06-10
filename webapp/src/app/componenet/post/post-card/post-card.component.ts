@@ -6,10 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { TimePipe } from '../../../pipes/time.pipe';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-post-card',
-  imports: [MatCard,MatIconModule,CommonModule,TimePipe,FormsModule],
+  imports: [MatCard,MatIconModule,CommonModule,TimePipe,FormsModule,RouterLink],
   templateUrl: './post-card.component.html',
   styleUrl: './post-card.component.scss'
 })

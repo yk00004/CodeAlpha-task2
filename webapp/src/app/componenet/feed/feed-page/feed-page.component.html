@@ -1,9 +1,15 @@
-<div class="max-w-2xl mx-auto p-4">
-  <h2 class="text-2xl font-bold mb-6">Feed</h2>
+<div class="max-w-2xl mx-auto p-6 bg-gray-900 min-h-screen text-gray-100">
+  <h2 class="text-3xl font-extrabold mb-8 border-b border-gray-700 pb-3">
+    Feed
+  </h2>
 
   <app-post-card
     *ngFor="let post of posts"
     [post]="post"
-    class="mb-6"
+    class="mb-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
   ></app-post-card>
+
+  <div *ngIf="posts.length === 0" class="text-center text-gray-500 mt-10 italic">
+    No posts available.
+  </div>
 </div>

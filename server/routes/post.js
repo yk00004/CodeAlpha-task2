@@ -3,6 +3,7 @@ const router = express.Router();
 const upload = require('../middlewere/upload');
 const Post = require('../model/Post');
 const auth = require('../middlewere/auth');
+const Notification = require('../model/notification');
 
 // CREATE POST
 router.post('/', auth, upload.single('image'), async (req, res) => {
@@ -40,6 +41,14 @@ router.put('/like/:id', auth, async (req, res) => {
 
     if (!post.likes.includes(userId)) {
       post.likes.push(userId);
+      if (post.user.toString() !== userId) {
+      await Notification.create({
+        sender: userId,
+        receiver: post.user,
+        type: 'like',
+        post: post._id,
+      });
+    }
     } else {
       post.likes = post.likes.filter(id => id.toString() !== userId);
     }
@@ -62,6 +71,14 @@ router.post('/comment/:id', auth, async (req, res) => {
     };
     post.comments.push(comment);
     await post.save();
+     if (post.user.toString() !== userId) {
+      await Notification.create({
+        sender: userId,
+        receiver: post.user,
+        type: 'comment',
+        post: post._id,
+      });
+    }
     const updatedPost = await post.populate('comments.user', 'username profileImage');
     res.json(updatedPost);
   } catch (err) {

@@ -8,46 +8,47 @@ import { ProfileComponent } from './componenet/user/profile/profile.component';
 import { SuggestionsComponent } from './componenet/user/suggestions/suggestions.component';
 import { SearchComponent } from './componenet/search/search.component';
 import { NotificationComponent } from './componenet/notification/notification.component';
+import { ChatComponent } from './componenet/chat/chat.component';
 
 export const routes: Routes = [
   {
-    path:"auth/login",
-    component:LoginComponent
+    path: 'auth/login',
+    component: LoginComponent,
   },
   {
-    path:"auth/register",
-    component:RegisterComponent,
+    path: 'auth/register',
+    component: RegisterComponent,
     // canActivate:[authGuard]
   },
   {
-    path:"feed",
-    component:FeedPageComponent,
+    path: 'feed',
+    component: FeedPageComponent,
     // canActivate:[authGuard]
   },
   {
-    path:"createpost",
-    component:CreatePostComponent ,
+    path: 'createpost',
+    component: CreatePostComponent,
     // canActivate:[authGuard]
   },
   {
-    path:"profile/:id",
-    component:ProfileComponent ,
+    path: 'profile/:id',
+    component: ProfileComponent,
     // canActivate:[authGuard]
   },
   {
-    path:"suggestions",
-    component:SuggestionsComponent ,
+    path: 'suggestions',
+    component: SuggestionsComponent,
     // canActivate:[authGuard]
   },
   {
-    path:"search",
-    component:SearchComponent ,
+    path: 'search',
+    component: SearchComponent,
     // canActivate:[authGuard]
   },
   {
-    path:"notification",
-    component:NotificationComponent ,
+    path: 'notification',
+    component: NotificationComponent,
     // canActivate:[authGuard]
   },
-
+  { path: 'chat/:otherUserId', component: ChatComponent },
 ];

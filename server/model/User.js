@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
   },
   password: String,
   bio: String,
-  avatar: String,
+  profileImage: String,
   followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }]
 }, { timestamps: true });
