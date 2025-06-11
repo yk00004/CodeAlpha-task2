@@ -21,34 +21,38 @@ export const routes: Routes = [
     // canActivate:[authGuard]
   },
   {
-    path: 'feed',
+    path: '',
     component: FeedPageComponent,
-    // canActivate:[authGuard]
+    canActivate:[authGuard]
   },
   {
     path: 'createpost',
     component: CreatePostComponent,
-    // canActivate:[authGuard]
+    canActivate:[authGuard]
   },
   {
     path: 'profile/:id',
     component: ProfileComponent,
-    // canActivate:[authGuard]
+    canActivate:[authGuard]
   },
   {
     path: 'suggestions',
     component: SuggestionsComponent,
-    // canActivate:[authGuard]
+    canActivate:[authGuard]
   },
   {
     path: 'search',
     component: SearchComponent,
-    // canActivate:[authGuard]
+    canActivate:[authGuard]
   },
   {
     path: 'notification',
     component: NotificationComponent,
-    // canActivate:[authGuard]
+    canActivate:[authGuard]
   },
-  { path: 'chat/:otherUserId', component: ChatComponent },
+  {
+    path: 'chat/:otherUserId',
+    component: ChatComponent,
+    canActivate:[authGuard]
+    },
 ];

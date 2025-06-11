@@ -1,15 +1,47 @@
-<div class="max-w-2xl mx-auto p-6 bg-gray-900 min-h-screen text-gray-100">
-  <h2 class="text-3xl font-extrabold mb-8 border-b border-gray-700 pb-3">
-    Feed
-  </h2>
+<div class="flex flex-col lg:flex-row max-w-7xl mx-auto p-6 bg-gray-900 min-h-screen text-gray-100 gap-6">
 
-  <app-post-card
-    *ngFor="let post of posts"
-    [post]="post"
-    class="mb-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
-  ></app-post-card>
+  <!-- 📄 FEED SECTION (LEFT) -->
+  <div class="w-full lg:w-2/3 scrollbar-hide h-screen overflow-y-auto pr-3">
+    <h2 class="text-3xl font-extrabold mb-6 border-b border-gray-700 pb-3">Feed</h2>
 
-  <div *ngIf="posts.length === 0" class="text-center text-gray-500 mt-10 italic">
-    No posts available.
+    <app-post-card
+      *ngFor="let post of posts"
+      [post]="post"
+      class="mb-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+    ></app-post-card>
+
+    <div *ngIf="posts.length === 0" class="text-center text-gray-500 mt-10 italic">
+      No posts available.
+    </div>
   </div>
+
+  <!-- 👥 SUGGESTIONS SECTION (RIGHT) -->
+  <div class="w-full lg:w-1/3 bg-gray-800 rounded-xl p-4 shadow-md h-screen overflow-y-auto">
+    <h3 class="text-xl font-semibold mb-4">Suggestions</h3>
+
+    <div *ngIf="suggetionlist?.length > 0; " class="space-y-4">
+      <div
+        *ngFor="let user of suggetionlist"
+        [routerLink]="['/profile', user._id]"
+        class="flex items-center cursor-pointer justify-between hover:bg-gray-700 p-2 rounded-lg cursor-pointer"
+      >
+        <div class="flex items-center space-x-3">
+          <img
+            [src]="'http://localhost:5000/' +user.profileImage "
+            alt="avatar"
+            class="w-10 h-10 rounded-full border border-gray-600"
+          />
+          <div>
+            <p class="font-medium text-gray-100">{{ user.name }}</p>
+            <p class="text-xs text-gray-400">{{ user.username }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="suggetionlist?.length <= 0; " >
+      <p class="text-gray-500 italic">No suggestions available.</p>
+    </div>
+  </div>
+
 </div>

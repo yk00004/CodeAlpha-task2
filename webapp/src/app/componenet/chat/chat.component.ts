@@ -1,113 +1,115 @@
-import { Component, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+  ChangeDetectorRef
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-// import { ChatService, Message } from '../services/chat.service';
-// import { AuthService } from '../services/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ChatService } from '../../services/chat.service';
 import { AuthService } from '../../services/auth.service';
-import { Subscription } from 'rxjs';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-chat',
-  imports: [CommonModule, FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule,RouterLink],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',
 })
-export class ChatComponent implements OnInit {
-  constructor(
-    private chat: ChatService,
-    private auth: AuthService,
-    private route: ActivatedRoute,
-    private rout:Router
-  ) {
-    this.chat.getHistory(this.otherUserId).subscribe((history: any) => {
-      this.HistoryDATA = history;
-    });
-  }
-
-  messages: any;
+export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
   inputText = '';
   currentUserId: any;
   otherUserId: any;
-  HistoryDATA: any;
-  private routeSub!: Subscription; // Subscription for route param changes
-  private messageSub!: Subscription; // Subscription for real-time messages
+  HistoryDATA: any[] = [];
+  otherprofiledata:any;
+  private messageSub!: Subscription;
+
+  @ViewChild('chatContainer') chatContainer!: ElementRef;
+
+  constructor(
+    private chat: ChatService,
+    private auth: AuthService,
+    private user: UserService,
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
-    this.messages = signal<{ from: string; text: string; timestamp: number }[]>(
-      []
-    );
     this.inputText = '';
     this.currentUserId = this.auth.getCurrentUserId();
     this.otherUserId = this.route.snapshot.params['otherUserId'];
 
-    this.chat.getHistory(this.otherUserId).subscribe((history: any) => {
-      this.HistoryDATA = history;
-    });
+    this.user.getProfile(this.otherUserId).subscribe((e)=>{
+      this.otherprofiledata=e
+    })
 
-    // 3. Join real-time room
+    this.loadHistory();
     this.chat.join(this.currentUserId);
 
-    // 4. Subscribe to live messages
-    this.chat.onMessage().subscribe((msg: any) => {
-      // only add if it's for this chat pair
+    this.messageSub = this.chat.onMessage().subscribe((msg: any) => {
       if (
         msg.from === this.otherUserId ||
         (msg.from === this.currentUserId && msg.to === this.otherUserId)
-      ) {
-        this.messages.mutate((arr: any) => arr.push(msg));
+      ){
+        this.HistoryDATA.push(msg);
+        this.scrollToBottom();
       }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    // When DOM is ready, scroll to bottom
+    this.scrollToBottom(true);
+  }
+
+  loadHistory() {
+    this.chat.getHistory(this.otherUserId).subscribe((history: any[]) => {
+      this.HistoryDATA = history || [];
+      this.cdr.detectChanges(); // ensure DOM updates
+      this.scrollToBottom(true);
     });
   }
 
   send() {
     if (!this.inputText.trim()) return;
 
-    // emit real-time
-    this.chat.sendRealtime(
-      this.currentUserId,
-      this.otherUserId,
-      this.inputText
-    );
+    this.chat.sendRealtime(this.currentUserId, this.otherUserId, this.inputText);
 
-    // optimistically show our own message
-    this.messages.mutate((arr: any) =>
-      arr.push({
-        from: this.currentUserId,
-        text: this.inputText,
-        timestamp: Date.now(),
-      })
-    );
+    const newMessage = {
+      from: this.currentUserId,
+      text: this.inputText,
+      timestamp: Date.now(),
+    };
 
+    this.HistoryDATA.push(newMessage);
     this.inputText = '';
-    this.chat.getHistory(this.otherUserId).subscribe((history:any) => {
-      this.HistoryDATA=history;
-
-    });
+    this.cdr.detectChanges();
+    this.scrollToBottom(true);
   }
-   private scrollToBottom(): void {
-    // Using setTimeout(0) to defer execution until Angular has rendered the new messages
+
+  scrollToBottom(force: boolean = false): void {
+    if (!this.chatContainer) return;
+
     setTimeout(() => {
-      const chatContainer = document.querySelector('.flex-1.overflow-auto');
-      if (chatContainer) {
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-        console.log('Scrolled to bottom. ScrollHeight:', chatContainer.scrollHeight);
-      } else {
-        console.warn('Chat container not found for scrolling.');
+      const el = this.chatContainer.nativeElement;
+      const isNearBottom =
+        el.scrollHeight - el.scrollTop - el.clientHeight < 150;
+
+      if (force || isNearBottom) {
+        el.scrollTop = el.scrollHeight;
       }
-    }, 0); // <-- IMPORTANT: 0ms delay
+    }, 100); // wait for DOM to paint
   }
 
-  ngOnDestroy(): void { // <-- Implement OnDestroy hook
-    if (this.routeSub) {
-      this.routeSub.unsubscribe();
-    }
+  ngOnDestroy(): void {
     if (this.messageSub) {
       this.messageSub.unsubscribe();
     }
-    // Optionally, emit an event to the server that the user is leaving the chat component
-    // this.chat.leaveConversation(this.otherUserId); // If you have such a method
   }
-
 }
