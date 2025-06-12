@@ -5,7 +5,7 @@
   <div [routerLink]="['/profile', post.user._id]" class="flex cursor-pointer items-center gap-3 p-4 border-b border-gray-700 bg-gray-800">
     <img
       *ngIf="post.user?.profileImage"
-      [src]="'http://localhost:5000/' + post.user.profileImage"
+      [src]=" post.user.profileImage"
       alt="User"
       class="w-10 h-10 rounded-full object-cover ring-1 ring-gray-700"
     />
@@ -19,7 +19,7 @@
   <div class="relative">
     <img
       *ngIf="post.image"
-      [src]="'http://localhost:5000/' + post.image"
+      [src]=" post.image"
       class="w-full h-64 object-cover transition-opacity hover:opacity-90"
     />
     <!-- Optional overlay for text on image if needed -->

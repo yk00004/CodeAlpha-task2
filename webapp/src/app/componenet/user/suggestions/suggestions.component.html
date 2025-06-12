@@ -8,7 +8,7 @@
   <div *ngFor="let user of suggestions" class="flex items-center justify-between mb-3">
     <div class="flex items-center gap-3">
       <img
-        [src]="'http://localhost:5000/' + user?.profileImage"
+        [src]=" user?.profileImage"
         alt="Profile"
         class="w-10 h-10 rounded-full object-cover border"
       />

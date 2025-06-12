@@ -47,7 +47,7 @@ export class AuthService {
     }
     return null;
   }
-  
+
    getCurrentUserId(): string | null {
    let userdata=localStorage.getItem('user');
    console.log(userdata);

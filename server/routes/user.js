@@ -2,8 +2,12 @@ const express = require("express");
 const User = require("../model/User");
 const router = express.Router();
 const auth = require("../middlewere/auth");
-const upload = require("../middlewere/upload"); // multer middleware
+// const upload = require("../middlewere/upload"); // multer middleware
 const Notification = require("../model/Notification");
+const multer = require('multer');
+const { storage } = require('../cloudinary'); 
+const upload = multer({ storage });
+
 
 // FOLLOW user
 router.put("/follow", auth, async (req, res) => {

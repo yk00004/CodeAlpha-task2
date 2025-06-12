@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const upload = require('../middlewere/upload');
+// const upload = require('../middlewere/upload');
 const Post = require('../model/Post');
 const auth = require('../middlewere/auth');
 const Notification = require('../model/Notification');
-
+const multer = require('multer');
+const { storage } = require('../cloudinary'); 
+const upload = multer({ storage });
 // CREATE POST
 router.post('/', auth, upload.single('image'), async (req, res) => {
   try {

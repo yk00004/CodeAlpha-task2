@@ -5,7 +5,7 @@
   >
     <!-- Profile Image -->
     <img
-      [src]="previewUrl || 'http://localhost:5000/' + user?.profileImage"
+      [src]="previewUrl ||  user?.profileImage"
       alt="Profile Image"
       class="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-md"
     />
@@ -94,7 +94,7 @@
       >
         <img
           *ngIf="post.image"
-          [src]="'http://localhost:5000/' + post.image"
+          [src]=" post.image"
           alt="Post"
           class="w-full h-56 object-cover"
         />

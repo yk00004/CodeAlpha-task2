@@ -32,7 +32,7 @@
       </a>
 
       <a
-        [routerLink]="['/profile', user]"
+        [routerLink]="['/profile', authService.getCurrentUserId()]"
         class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 transition"
       >
         <mat-icon>account_circle</mat-icon>

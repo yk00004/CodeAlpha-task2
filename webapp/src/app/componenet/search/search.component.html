@@ -8,7 +8,7 @@
       [(ngModel)]="searchText"
       (input)="onSearch()"
       class="text-white-200 placeholder-white-400"
-      
+
     />
   </mat-form-field>
 
@@ -27,7 +27,7 @@
     >
       <!-- Profile Image -->
       <img
-        [src]="'http://localhost:5000/' + user.profileImage"
+        [src]=" user.profileImage"
         alt="User"
         class="w-16 h-16 rounded-full object-cover border-2 border-blue-600 group-hover:border-blue-400 transition-all duration-300"
       />
