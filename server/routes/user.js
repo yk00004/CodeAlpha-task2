@@ -3,7 +3,7 @@ const User = require("../model/User");
 const router = express.Router();
 const auth = require("../middlewere/auth");
 const upload = require("../middlewere/upload"); // multer middleware
-const Notification = require("../model/notification");
+const Notification = require("../model/Notification");
 
 // FOLLOW user
 router.put("/follow", auth, async (req, res) => {

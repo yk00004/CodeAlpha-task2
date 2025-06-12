@@ -3,7 +3,7 @@ const router = express.Router();
 const upload = require('../middlewere/upload');
 const Post = require('../model/Post');
 const auth = require('../middlewere/auth');
-const Notification = require('../model/notification');
+const Notification = require('../model/Notification');
 
 // CREATE POST
 router.post('/', auth, upload.single('image'), async (req, res) => {
