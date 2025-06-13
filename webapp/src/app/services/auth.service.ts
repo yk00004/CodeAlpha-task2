@@ -13,7 +13,7 @@ export interface RegisterData {
 })
 
 export class AuthService {
-  private baseUrl = 'http://localhost:5000/auth';
+  private baseUrl = 'https://social-bf8b.onrender.com/auth';
 
   constructor(private http:HttpClient) { }
 

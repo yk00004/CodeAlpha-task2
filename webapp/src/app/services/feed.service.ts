@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class FeedService {
-   private API_URL = 'http://localhost:5000/posts';
+   private API_URL = 'https://social-bf8b.onrender.com/posts';
 
   constructor(private http: HttpClient) {}
 

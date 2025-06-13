@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class NotificationService {
 
-private API = 'http://localhost:5000/notification';
+private API = 'https://social-bf8b.onrender.com/notification';
 
   constructor(private http: HttpClient) {}
 

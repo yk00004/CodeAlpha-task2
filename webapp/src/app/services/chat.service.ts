@@ -15,10 +15,10 @@ export interface Message {
 export class ChatService {
  private socket: Socket;
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:5000/api/chat';
+  private baseUrl = 'https://social-bf8b.onrender.com/api/chat';
 
   constructor() {
-    this.socket = io('http://localhost:5000', { transports: ['websocket'] });
+    this.socket = io('https://social-bf8b.onrender.com', { transports: ['websocket'] });
   }
 
   join(userId: string) {

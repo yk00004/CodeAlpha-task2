@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UserService {
-  private API_URL = 'http://localhost:5000';
+  private API_URL = 'https://social-bf8b.onrender.com';
 
   constructor(private http: HttpClient) {}
 

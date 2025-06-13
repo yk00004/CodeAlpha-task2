@@ -12,13 +12,14 @@ import {
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-login',
   imports: [
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
+    RouterLink,
     MatButtonModule,
   ],
   templateUrl: './login.component.html',
