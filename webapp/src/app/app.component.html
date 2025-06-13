@@ -1,8 +1,10 @@
 <div class="flex">
-  <app-navbar></app-navbar>
+  <app-navbar *ngIf="AuthService.islogedin"></app-navbar>
 
-  <!-- Main content area -->
-  <div class="ml-60 flex-1 bg-gray-950 min-h-screen p-6 text-gray-100">
+  <div
+    class="flex-1 bg-gray-950 min-h-screen p-6 text-gray-100"
+    [ngClass]="{ 'ml-60': AuthService.islogedin }"
+  >
     <router-outlet></router-outlet>
   </div>
 </div>

@@ -55,4 +55,8 @@ export const routes: Routes = [
     component: ChatComponent,
     canActivate:[authGuard]
     },
+  {
+    path: '**',
+    component: LoginComponent,
+    },
 ];

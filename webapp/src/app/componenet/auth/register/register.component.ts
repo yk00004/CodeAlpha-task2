@@ -5,7 +5,7 @@ import {MatFormFieldControl,MatFormFieldModule} from '@angular/material/form-fie
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../../services/auth.service';
-import { Route, Router, Routes } from '@angular/router';
+import { Route, Router, RouterLink, Routes } from '@angular/router';
 @Component({
   selector: 'app-register',
 
@@ -14,6 +14,7 @@ import { Route, Router, Routes } from '@angular/router';
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
+    RouterLink
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',

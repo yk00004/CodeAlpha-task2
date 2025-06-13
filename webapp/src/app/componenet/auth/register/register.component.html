@@ -1,7 +1,8 @@
+<div class="max-w-md mx-auto p-6 bg-gray-900 rounded-xl shadow-lg space-y-6 mt-10 text-white">
 <form
   [formGroup]="registerForm"
   (ngSubmit)="onSubmit()"
-  class="max-w-md mx-auto p-6 bg-gray-900 rounded-xl shadow-lg space-y-6 mt-10 text-white"
+
 >
   <h2 class="text-3xl font-bold text-center text-white">Register</h2>
 
@@ -35,3 +36,12 @@
     Register
   </button>
 </form>
+<button
+  mat-raised-button
+  color="accent"
+  class="w-full font-semibold"
+  routerLink="/auth/login"
+>
+ login
+</button>
+</div>
