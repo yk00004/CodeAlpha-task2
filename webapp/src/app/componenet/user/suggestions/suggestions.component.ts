@@ -13,6 +13,8 @@ import { NgFor, NgIf } from '@angular/common';
 export class SuggestionsComponent {
   suggestions: any[] = [];
   userId: string = '';
+  defaulturl:any="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+  
 
   constructor(private userService: UserService, private auth: AuthService) {}
 

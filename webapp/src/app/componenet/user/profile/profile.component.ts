@@ -20,7 +20,7 @@ export class ProfileComponent {
   profileImageFile!: any;
   isOwnProfile: boolean = false;
   isFollowing: boolean = false;
-
+  defaulturl:any="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,

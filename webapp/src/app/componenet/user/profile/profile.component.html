@@ -5,7 +5,7 @@
   >
     <!-- Profile Image -->
     <img
-      [src]="previewUrl ||  user?.profileImage"
+      [src]="previewUrl ||  user?.profileImage||defaulturl"
       alt="Profile Image"
       class="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-md"
     />

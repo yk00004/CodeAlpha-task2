@@ -27,7 +27,7 @@
     >
       <!-- Profile Image -->
       <img
-        [src]=" user.profileImage"
+        [src]=" user.profileImage||defaulturl"
         alt="User"
         class="w-16 h-16 rounded-full object-cover border-2 border-blue-600 group-hover:border-blue-400 transition-all duration-300"
       />
